@@ -1,5 +1,6 @@
 var spawn = require("child_process").spawn;
 var util = require("util");
+var path = require("path");
 
 try {
 	var execSync = (function() {
@@ -13,13 +14,13 @@ var config, isSilent;
 
 switch(process.platform) {
 	case "darwin":
-		config = require("./platform/darwin");
+		config = require(path.join(__dirname, "platform", "darwin"));
 		break;
 	case "win32":
-		config = require("./platform/win32");
+		config = require(path.join(__dirname, "platform", "win32"));
 		break;
 	case "linux":
-		config = require("./platform/linux");
+		config = require(path.join(__dirname, "platform", "linux"));
 		break;
 	default:
 		throw "Unknown platform: '" + process.platform + "'.  Send this error to xavi.rmz@gmail.com.";
